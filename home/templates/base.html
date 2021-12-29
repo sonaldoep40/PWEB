@@ -1,0 +1,69 @@
+{% load static %}
+{% load bootstrap4 %}
+
+
+<!DOCTYPE html>
+	<html lang="pt-br">
+	<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	    <meta charset="UTF-8">
+	     <title>{% block titulo %} {% endblock %}</title>
+		<link rel="stylesheet" href="{% static 'css/estilo.css' %}">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+		<script src="{% static 'javascript/funcoes.js' %}"></script>
+		{# Load CSS and JavaScript #}
+		{% bootstrap_css %}
+		{% bootstrap_javascript jquery='full' %}
+
+		{# Display django.contrib.messages as Bootstrap alerts #}
+		{% bootstrap_messages %}
+	</head>
+	<body>
+
+	    <div class="cabecalho">
+			<div style="float: left">MEU SISTEMA </div>
+			{% if user.is_authenticated %}
+
+			<div style="float: right">USER: {{user.first_name}}  <a href="/admin/logout/">Logout</a></div>
+			{% else %}
+				<div style="float: right"><a href="/admin/">Login</a></div>
+			{% endif %}
+
+	    </div>
+
+		<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+  <!-- Brand -->
+  <a class="navbar-brand" href="{% url 'home' %}">Home</a>
+
+  <!-- Toggler/collapsibe Button -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- Navbar links -->
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'produto' %}">Produtos</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+	    <div class="conteudo">
+
+	        <h1>{% block h1 %} {% endblock %}</h1>
+
+            {% block conteudo %}
+
+            {% endblock %}
+	    </div>
+
+	</body>
+
+	<script>
+		$(document).ready(function(){
+		  $('[data-toggle="tooltip"]').tooltip();
+		});
+	</script>
+
+</html>

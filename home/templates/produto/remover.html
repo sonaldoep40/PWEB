@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block titulo %} Remover {% endblock %}
+
+{% block h1 %} Remover Produto {% endblock %}
+
+{% block conteudo %}
+
+				<form method="POST">{% csrf_token %}
+					<fieldset>
+						<legend>Deseja Realmente Remover este Produto?</legend>
+							Nome:{{produto.nome}}<br><br>
+						<button type="submit">Remover</button>
+						<button type="button" onclick="location.href=`{% url 'produto' %}`">Cancelar</button>
+					</fieldset>
+				</form>
+{% endblock %}

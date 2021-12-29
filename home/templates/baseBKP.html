@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+	<html lang="pt-br">
+	<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	    <meta charset="UTF-8">
+	     <title>{% block titulo %} {% endblock %}</title>
+		<link rel="stylesheet" href="{% static 'css/estilo.css' %}">
+		<script src="{% static 'javascript/funcoes.js' %}"></script>
+		</head>
+	<body>
+
+	    <div class="cabecalho">
+			<div style="float: left">MEU SISTEMA </div>
+			{% if user.is_authenticated %}
+
+			<div style="float: right">USER: {{user.first_name}}  <a href="/admin/logout/">Logout</a></div>
+			{% else %}
+				<div style="float: right"><a href="/admin/">Login</a></div>
+			{% endif %}
+
+	    </div>
+
+	    <div class="lateral">
+	        <h2>Cadastros</h2>
+	        <ul>
+	        	<li><a href="{% url 'home' %}">Home</a></li>
+	            <li><a href="{% url 'produto' %}">Listagem de Produtos</a></li>
+	            <li>Clientes</li>
+	            <li>Outros</li>
+	        </ul>
+	    </div>
+
+
+	    <div class="conteudo">
+
+	        <h1>{% block h1 %} {% endblock %}</h1>
+
+            {% block conteudo %}
+
+            {% endblock %}
+	    </div>
+
+	</body>
+</html>

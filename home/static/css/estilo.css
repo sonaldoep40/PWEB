@@ -1,0 +1,11 @@
+.cabecalho {
+	padding: 5px;
+	height: 40px;
+	background-color: yellow;
+
+}
+
+.conteudo {
+	background-color: #f2f2f2;
+	padding: 20px;
+}
